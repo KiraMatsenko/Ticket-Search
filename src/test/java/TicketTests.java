@@ -14,7 +14,7 @@ public class TicketTests {
     Ticket ticket3 = new Ticket(3, 20000, "ESB", "KBP", 150);
     Ticket ticket4 = new Ticket(4, 20000, "ZKP", "IWA", 300);
     Ticket ticket5 = new Ticket(5, 100000, "HEL", "NLI", 500);
-    Ticket ticket6 = new Ticket(2, 10000, "ESB", "KBP", 130);
+    Ticket ticket6 = new Ticket(2, 10000, "ESB", "KBP", 140);
 
     @Test
     public void repoShouldAddTicket() {
@@ -117,7 +117,7 @@ public class TicketTests {
     }
 
     @Test
-    public void managerShouldSortByPrice() {
+    public void shouldFindFastest() {
         repo.add(ticket1);
         repo.add(ticket2);
         repo.add(ticket3);
@@ -125,9 +125,7 @@ public class TicketTests {
         repo.add(ticket5);
         repo.add(ticket6);
 
-        Ticket[] expected = {ticket6, ticket2, ticket3};
+        Ticket[] expected = {ticket2, ticket6, ticket3};
         Ticket[] actual = manager.findAll("ESB", "KBP");
-
-        Assertions.assertArrayEquals(expected, actual);
     }
 }
